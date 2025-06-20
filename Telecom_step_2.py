@@ -3,7 +3,6 @@ import streamlit as st
 
 # Force Streamlit to use the port Render provides
 port = int(os.environ.get("PORT", 8501))
-st.set_option("server.port", port)
 
 import streamlit as st
 import streamlit_authenticator as stauth
