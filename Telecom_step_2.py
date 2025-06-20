@@ -15,7 +15,8 @@ usernames = ['admin']
 passwords = ['1234']
 
 # ✅ Hash the passwords
-hashed_pw = stauth.Hasher(passwords).generate()
+hashed_pw = stauth.Hasher().generate(passwords)
+
 
 # ✅ Set up the authenticator
 authenticator = stauth.Authenticate(
