@@ -12,9 +12,14 @@ hashed_pw = ['$2b$12$1yXNM7LQMWqQhoXgOkrcp.LXPadXCVYjwYU9PRQsBpJsy4dZh2xga']
 
 # ✅ Set up the authenticator
 authenticator = stauth.Authenticate(
-    names, usernames, hashed_pw,
-    'churn_app', 'abcdef', cookie_expiry_days=1
+    names=names,
+    usernames=usernames,
+    passwords=hashed_pw,
+    cookie_name='churn_app',
+    key='abcdef',
+    cookie_expiry_days=1
 )
+
 
 # --- Login ---
 name, auth_status, username = authenticator.login('Login', 'main')
