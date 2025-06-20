@@ -1,7 +1,3 @@
-import os
-import streamlit as st
-
-
 import streamlit as st
 import streamlit_authenticator as stauth
 import pandas as pd
@@ -12,9 +8,8 @@ names = ['Admin']
 usernames = ['admin']
 passwords = ['1234']
 
-# ✅ Hash the passwords
-hashed_pw = stauth.Hasher().generate(passwords)
-
+# ✅ Hash the passwords (for development only)
+hashed_pw = stauth.Hasher(passwords).generate()
 
 # ✅ Set up the authenticator
 authenticator = stauth.Authenticate(
@@ -32,8 +27,12 @@ if auth_status:
     st.success(f"Hello, {name}! You're logged in.")
 
     # ✅ Load model and features inside authenticated block
-    model = joblib.load('final_rf_model.pkl')
-    features = joblib.load('model_features.pkl')
+    try:
+        model = joblib.load('final_rf_model.pkl')
+        features = joblib.load('model_features.pkl')
+    except Exception as e:
+        st.error(f"⚠️ Could not load model or features: {e}")
+        st.stop()
 
     # ✅ Upload customer file
     uploaded_file = st.file_uploader("📤 Upload a customer CSV file for churn prediction", type="csv")
@@ -60,4 +59,4 @@ elif auth_status is False:
     st.error("❌ Incorrect username or password")
 
 elif auth_status is None:
-    st.warning("Please enter your credentials")
+    st.warning("🟡 Please enter your credentials")
