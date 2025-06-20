@@ -8,17 +8,27 @@ names = ['Admin']
 usernames = ['admin']
 
 # ✅ Pre-generated hashed password (generated once using stauth.Hasher)
+# Hashed password for '1234'
 hashed_pw = ['$2b$12$1yXNM7LQMWqQhoXgOkrcp.LXPadXCVYjwYU9PRQsBpJsy4dZh2xga']
 
-# ✅ Set up the authenticator
+# Create credentials dictionary
+credentials = {
+    "usernames": {
+        "admin": {
+            "name": "Admin",
+            "password": hashed_pw[0]
+        }
+    }
+}
+
+# Setup authenticator with credentials dict
 authenticator = stauth.Authenticate(
-    names=names,
-    usernames=usernames,
-    passwords=hashed_pw,
+    credentials=credentials,
     cookie_name='churn_app',
     key='abcdef',
     cookie_expiry_days=1
 )
+
 
 
 # --- Login ---
