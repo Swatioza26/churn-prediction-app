@@ -32,7 +32,7 @@ authenticator = stauth.Authenticate(
 
 
 # --- Login ---
-name, auth_status, username = authenticator.login('Login', 'main')
+name, auth_status, username = authenticator.login(location='main')
 
 # --- Main App after Login ---
 if auth_status:
