@@ -6,10 +6,9 @@ import joblib
 # --- User credentials ---
 names = ['Admin']
 usernames = ['admin']
-passwords = ['1234']
 
-# ✅ Hash the passwords (for development only)
-hashed_pw = stauth.Hasher(passwords).generate()
+# ✅ Pre-generated hashed password (generated once using stauth.Hasher)
+hashed_pw = ['$2b$12$1yXNM7LQMWqQhoXgOkrcp.LXPadXCVYjwYU9PRQsBpJsy4dZh2xga']
 
 # ✅ Set up the authenticator
 authenticator = stauth.Authenticate(
@@ -26,7 +25,7 @@ if auth_status:
     st.title("📊 Welcome to the Churn Prediction Dashboard")
     st.success(f"Hello, {name}! You're logged in.")
 
-    # ✅ Load model and features inside authenticated block
+    # ✅ Load model and features
     try:
         model = joblib.load('final_rf_model.pkl')
         features = joblib.load('model_features.pkl')
@@ -34,7 +33,7 @@ if auth_status:
         st.error(f"⚠️ Could not load model or features: {e}")
         st.stop()
 
-    # ✅ Upload customer file
+    # ✅ File Upload
     uploaded_file = st.file_uploader("📤 Upload a customer CSV file for churn prediction", type="csv")
 
     if uploaded_file:
