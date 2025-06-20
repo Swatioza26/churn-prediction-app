@@ -37,4 +37,4 @@ if authenticator.authentication_status:
     # ✅ Load model and features
     try:
         model = joblib.load('final_rf_model.pkl')
-        features = joblib.load('m
+        features = joblib.load('model_features.pkl')
