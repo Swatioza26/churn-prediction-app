@@ -6,10 +6,8 @@ import joblib
 # --- User credentials ---
 names = ['Admin']
 usernames = ['admin']
-passwords = ['1234']
 
-# ✅ Hash the passwords
-hashed_pw = stauth.Hasher(passwords).generate()
+hashed_pw = ['$2b$12$Iptyw14/XtZLrUHcGp4PC.ugMftCgGt5v4zzDM2Z8sQsHsBbYU.Ae']
 
 # ✅ Set up the authenticator
 authenticator = stauth.Authenticate(
